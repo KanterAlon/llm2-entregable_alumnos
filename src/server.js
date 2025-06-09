@@ -7,6 +7,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(morgan('dev'));
+app.use(express.static(new URL('../public', import.meta.url).pathname));
 
 app.post('/api/chat', async (req, res) => {
   const { prompt } = req.body;
