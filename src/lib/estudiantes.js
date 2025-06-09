@@ -1,7 +1,6 @@
-// Gestión de estudiantes
 import { readFileSync, writeFileSync } from 'fs';
 
-const DATA_FILE = './lib/alumnos.json';
+const DATA_FILE = new URL('./alumnos.json', import.meta.url);
 
 class Estudiantes {
   constructor() {
@@ -27,24 +26,27 @@ class Estudiantes {
     }
   }
 
-  // TODO: Implementar método para agregar estudiante
   agregarEstudiante(nombre, apellido, curso) {
-    // Tu código aquí
+    const nuevo = { nombre, apellido, curso };
+    this.estudiantes.push(nuevo);
+    this.guardarEstudiantes();
+    return nuevo;
   }
 
-  // TODO: Implementar método para buscar estudiante por nombre
   buscarEstudiantePorNombre(nombre) {
-    // Tu código aquí
+    return this.estudiantes.filter(e =>
+      e.nombre.toLowerCase().includes(nombre.toLowerCase())
+    );
   }
 
-  // TODO: Implementar método para buscar estudiante por apellido
   buscarEstudiantePorApellido(apellido) {
-    // Tu código aquí
+    return this.estudiantes.filter(e =>
+      e.apellido.toLowerCase().includes(apellido.toLowerCase())
+    );
   }
 
-  // TODO: Implementar método para listar estudiantes
   listarEstudiantes() {
-    // Tu código aquí
+    return this.estudiantes;
   }
 }
 

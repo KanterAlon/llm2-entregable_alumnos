@@ -4,7 +4,6 @@ function imprimirMensaje(mensaje) {
   console.log(mensaje);
 }
 
-// Formateador de respuestas básico
 function formatResponse(response){
   return `📝 Respuesta:\n${response.data.result}`;
 }
