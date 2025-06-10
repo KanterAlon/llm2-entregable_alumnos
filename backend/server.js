@@ -7,7 +7,7 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(morgan('dev'));
-
+app.use(express.static(new URL('../frontend/build', import.meta.url).pathname));
 app.use(express.static(new URL('../public', import.meta.url).pathname));
 
 

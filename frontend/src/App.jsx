@@ -1,6 +1,7 @@
-const { useState, useRef, useEffect } = React;
+import { useState, useRef, useEffect } from 'react';
+import axios from 'axios';
 
-function ChatApp() {
+function App() {
   const [messages, setMessages] = useState([]);
   const [input, setInput] = useState('');
   const [loading, setLoading] = useState(false);
@@ -10,7 +11,7 @@ function ChatApp() {
     endRef.current?.scrollIntoView({ behavior: 'smooth' });
   }, [messages]);
 
-  async function sendMessage(e) {
+  const sendMessage = async (e) => {
     e.preventDefault();
     if (!input.trim()) return;
     const userMsg = { role: 'user', text: input };
@@ -18,12 +19,8 @@ function ChatApp() {
     setInput('');
     setLoading(true);
     try {
-      const res = await fetch('/api/chat', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ prompt: userMsg.text })
-      });
-      const data = await res.json();
+      const res = await axios.post('/api/chat', { prompt: userMsg.text });
+      const data = res.data;
       const botMsg = { role: 'bot', text: data.result || data.error };
       setMessages(m => [...m, botMsg]);
     } catch (err) {
@@ -31,7 +28,7 @@ function ChatApp() {
     } finally {
       setLoading(false);
     }
-  }
+  };
 
   return (
     <div className="chat-container">
@@ -55,4 +52,4 @@ function ChatApp() {
   );
 }
 
-ReactDOM.createRoot(document.getElementById('root')).render(<ChatApp />);
+export default App;
