@@ -5,7 +5,9 @@
   "scripts": {
     "start": "node backend/main.js",
     "server": "node backend/server.js",
-     "start:dev": "concurrently \"cross-env PORT=3001 npm run server\" \"cross-env PORT=3000 npm start --prefix frontend\"",
+    "start:dev": "concurrently \"cross-env PORT=3001 npm run server\" \"cross-env PORT=3000 npm start --prefix frontend\"",
+    "setup": "npm install && npm install --prefix frontend",
+    "dev": "npm run setup && npm run start:dev",
     "test": "vitest run"
   },
   "author": "",

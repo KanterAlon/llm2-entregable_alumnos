@@ -4,29 +4,23 @@ Este repositorio incluye un backend en `backend/` y una interfaz web en `fronten
 
 ## Instalación
 
-Ejecuta un único comando para instalar todas las dependencias:
+Con un único comando podrás instalar todas las dependencias y lanzar el entorno de desarrollo:
 
 ```bash
-npm install
+npm run dev
 ```
 
-Si necesitas reinstalar las dependencias del frontend puedes ejecutar:
+Tras ejecutar `npm run dev` se instalarán las dependencias del proyecto principal y del frontend, iniciando después ambos servidores.
+
+El frontend quedará disponible en `http://localhost:3000` y el backend en `http://localhost:3001` automáticamente. Gracias a `cross-env` no es necesario cambiar puertos manualmente, incluso en Windows.
+
+Si en algún momento necesitas reinstalar las dependencias sin arrancar el proyecto puedes utilizar:
 
 ```bash
-npm install --prefix frontend
+npm run setup
 ```
 
-## Ejecución
-
-Para levantar el servidor y la aplicación web en paralelo, usa:
-
-```bash
-npm run start:dev
-```
-
-El comando levantará el frontend en `http://localhost:3000` y el backend en `http://localhost:3001` automáticamente. Gracias a `cross-env` no es necesario cambiar puertos manualmente, incluso en Windows.
-
-Si solo deseas utilizar el asistente por consola puedes ejecutar:
+Y si solo deseas utilizar el asistente por consola ejecuta:
 
 ```bash
 npm start
