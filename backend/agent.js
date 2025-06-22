@@ -20,11 +20,6 @@ Usá las herramientas disponibles para:
 Respondé de forma clara y breve.
 `.trim();
 
-const ollamaLLM = new Ollama({
-    model: "qwen3:1.7b",
-    temperature: 0.75,
-    timeout: 2 * 60 * 1000,
-});
 
 const buscarPorNombreTool = tool({
     name: "buscarPorNombre",
@@ -79,11 +74,23 @@ const listarEstudiantesTool = tool({
     },
 });
 
-const elAgente = agent({
-    tools: [buscarPorNombreTool, buscarPorApellidoTool, agregarEstudianteTool, listarEstudiantesTool],
-    llm: ollamaLLM,
-    verbose: DEBUG,
-    systemPrompt: systemPrompt,
-});
+const TOOLS = [
+    buscarPorNombreTool,
+    buscarPorApellidoTool,
+    agregarEstudianteTool,
+    listarEstudiantesTool,
+];
 
-export { elAgente };
+function createAgent({ model = "qwen3:1.7b", temperature = 0.75 } = {}) {
+    const llm = new Ollama({ model, temperature, timeout: 2 * 60 * 1000 });
+    return agent({
+        tools: TOOLS,
+        llm,
+        verbose: DEBUG,
+        systemPrompt,
+    });
+}
+
+const elAgente = createAgent();
+
+export { createAgent, elAgente };

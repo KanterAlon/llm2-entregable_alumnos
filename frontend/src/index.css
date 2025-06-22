@@ -26,14 +26,22 @@ body {
   overflow-y: auto;
 }
 
-.messages .user {
-  text-align: right;
+.message {
   margin: 5px 0;
+  display: flex;
+  gap: 4px;
 }
 
-.messages .bot {
-  text-align: left;
-  margin: 5px 0;
+.message.user {
+  justify-content: flex-end;
+}
+
+.message.bot {
+  justify-content: flex-start;
+}
+
+.avatar {
+  font-size: 1.2rem;
 }
 
 .loading {
@@ -45,6 +53,7 @@ body {
   display: flex;
   padding: 10px;
   border-top: 1px solid #ddd;
+  gap: 8px;
 }
 
 .input-area input {
@@ -55,7 +64,10 @@ body {
 
 .input-area button {
   padding: 8px 16px;
-  margin-left: 8px;
+}
+
+.input-area select {
+  padding: 8px;
 }
 
 @media (max-width: 600px) {

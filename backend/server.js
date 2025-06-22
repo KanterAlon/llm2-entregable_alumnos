@@ -1,9 +1,9 @@
 import express from 'express';
 import cors from 'cors';
 import morgan from 'morgan';
-import { elAgente } from './agent.js';
+import { createAgent } from './agent.js';
 
-const app = express();
+export const app = express();
 app.use(cors());
 app.use(express.json());
 app.use(morgan('dev'));
@@ -12,12 +12,13 @@ app.use(express.static(new URL('../public', import.meta.url).pathname));
 
 
 app.post('/api/chat', async (req, res) => {
-  const { prompt } = req.body;
+  const { prompt, model, temperature } = req.body;
   if (!prompt) {
     return res.status(400).json({ error: 'Prompt requerido' });
   }
+  const agente = createAgent({ model, temperature });
   try {
-    const respuesta = await elAgente.run(prompt);
+    const respuesta = await agente.run(prompt);
     res.json({ result: respuesta.data.result });
   } catch (err) {
     console.error('Error al procesar el mensaje', err);
@@ -25,7 +26,11 @@ app.post('/api/chat', async (req, res) => {
   }
 });
 
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Servidor escuchando en http://localhost:${PORT}`);
-});
+if (process.env.NODE_ENV !== 'test') {
+  const PORT = process.env.PORT || 3000;
+  app.listen(PORT, () => {
+    console.log(`Servidor escuchando en http://localhost:${PORT}`);
+  });
+}
+
+export default app;
