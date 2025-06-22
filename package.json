@@ -6,7 +6,6 @@
     "start": "node backend/main.js",
     "server": "node backend/server.js",
     "start:dev": "concurrently \"npm run server\" \"npm start --prefix frontend\"",
-    "postinstall": "npm install --prefix frontend",
     "test": "vitest run"
   },
   "author": "",
