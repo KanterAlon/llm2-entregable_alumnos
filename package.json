@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node backend/main.js",
     "server": "node backend/server.js",
-    "start:dev": "concurrently \"npm run server\" \"npm start --prefix frontend\"",
+    "start:dev": "concurrently \"cross-env PORT=3001 npm run server\" \"cross-env PORT=3000 npm start --prefix frontend\"",
     "test": "vitest run"
   },
   "author": "",
@@ -24,7 +24,8 @@
   "devDependencies": {
     "supertest": "^6.3.3",
     "vitest": "^1.1.0",
-    "concurrently": "^8.2.0"
+    "concurrently": "^8.2.0",
+    "cross-env": "^7.0.3"
   },
   "type": "module"
 }
