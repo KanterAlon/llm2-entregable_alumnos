@@ -10,7 +10,11 @@ Ejecuta un único comando para instalar todas las dependencias:
 npm install
 ```
 
-El script `postinstall` instalará automáticamente los paquetes del frontend.
+Si necesitas reinstalar las dependencias del frontend puedes ejecutar:
+
+```bash
+npm install --prefix frontend
+```
 
 ## Ejecución
 
