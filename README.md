@@ -24,7 +24,7 @@ Para levantar el servidor y la aplicación web en paralelo, usa:
 npm run start:dev
 ```
 
-Se abrirá la página en tu navegador y el backend quedará disponible en `http://localhost:3000`.
+El comando levantará el frontend en `http://localhost:3000` y el backend en `http://localhost:3001` automáticamente, sin necesidad de cambiar puertos manualmente.
 
 Si solo deseas utilizar el asistente por consola puedes ejecutar:
 

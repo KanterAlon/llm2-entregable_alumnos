@@ -5,7 +5,7 @@
   "scripts": {
     "start": "node backend/main.js",
     "server": "node backend/server.js",
-    "start:dev": "concurrently \"npm run server\" \"npm start --prefix frontend\"",
+    "start:dev": "concurrently \"PORT=3001 npm run server\" \"PORT=3000 npm start --prefix frontend\"",
     "test": "vitest run"
   },
   "author": "",
