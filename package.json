@@ -5,6 +5,8 @@
   "scripts": {
     "start": "node backend/main.js",
     "server": "node backend/server.js",
+    "start:dev": "concurrently \"npm run server\" \"npm start --prefix frontend\"",
+    "postinstall": "npm install --prefix frontend",
     "test": "vitest run"
   },
   "author": "",
@@ -22,7 +24,8 @@
   },
   "devDependencies": {
     "supertest": "^6.3.3",
-    "vitest": "^1.1.0"
+    "vitest": "^1.1.0",
+    "concurrently": "^8.2.0"
   },
   "type": "module"
 }
