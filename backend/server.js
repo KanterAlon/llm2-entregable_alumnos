@@ -3,6 +3,10 @@ import cors from 'cors';
 import morgan from 'morgan';
 import { createAgent } from './agent.js';
 
+function cleanResult(text) {
+  return text.replace(/<think>[\s\S]*?<\/think>/g, '').trim();
+}
+
 export const app = express();
 app.use(cors());
 app.use(express.json());
@@ -19,7 +23,7 @@ app.post('/api/chat', async (req, res) => {
   const agente = createAgent({ model, temperature });
   try {
     const respuesta = await agente.run(prompt);
-    res.json({ result: respuesta.data.result });
+    res.json({ result: cleanResult(respuesta.data.result) });
   } catch (err) {
     console.error('Error al procesar el mensaje', err);
     res.status(500).json({ error: 'No se pudo procesar el mensaje' });
