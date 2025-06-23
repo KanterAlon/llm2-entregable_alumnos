@@ -4,8 +4,12 @@ function imprimirMensaje(mensaje) {
   console.log(mensaje);
 }
 
+function cleanResult(text) {
+  return text.replace(/<think>[\s\S]*?<\/think>/g, '').trim();
+}
+
 function formatResponse(response){
-  return `📝 Respuesta:\n${response.data.result}`;
+  return `📝 Respuesta:\n${cleanResult(response.data.result)}`;
 }
 
 const mensajeBienvenidaDefault = `

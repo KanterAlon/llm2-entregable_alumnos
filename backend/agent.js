@@ -3,7 +3,7 @@ import { Ollama } from "@llamaindex/ollama";
 import { z } from "zod";
 import { Estudiantes } from "./lib/estudiantes.js";
 
-const DEBUG = true;
+const DEBUG = false;
 
 const estudiantes = new Estudiantes();
 estudiantes.cargarEstudiantesDesdeJson();
