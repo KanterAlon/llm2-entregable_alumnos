@@ -3,7 +3,9 @@ import { Ollama } from "@llamaindex/ollama";
 import { z } from "zod";
 import { Estudiantes } from "./lib/estudiantes.js";
 
-const DEBUG = true;
+// Modo detallado de logs. Puede activarse estableciendo la variable
+// de entorno AGENT_DEBUG en "true".
+const DEFAULT_DEBUG = process.env.AGENT_DEBUG === "true";
 
 const estudiantes = new Estudiantes();
 estudiantes.cargarEstudiantesDesdeJson();
@@ -81,12 +83,12 @@ const TOOLS = [
     listarEstudiantesTool,
 ];
 
-function createAgent({ model = "qwen3:1.7b", temperature = 0.75 } = {}) {
+function createAgent({ model = "qwen3:1.7b", temperature = 0.75, debug = DEFAULT_DEBUG } = {}) {
     const llm = new Ollama({ model, temperature, timeout: 2 * 60 * 1000 });
     return agent({
         tools: TOOLS,
         llm,
-        verbose: DEBUG,
+        verbose: debug,
         systemPrompt,
     });
 }

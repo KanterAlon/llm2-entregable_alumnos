@@ -25,3 +25,13 @@ Y si solo deseas utilizar el asistente por consola ejecuta:
 ```bash
 npm start
 ```
+
+### Modo detallado de logs
+
+Si querés ver los pasos internos que sigue el agente podés activar el modo
+detallado estableciendo la variable de entorno `AGENT_DEBUG` en `true` antes de
+iniciar el asistente:
+
+```bash
+AGENT_DEBUG=true npm start
+```
