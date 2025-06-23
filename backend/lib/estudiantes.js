@@ -27,10 +27,21 @@ class Estudiantes {
   }
 
   agregarEstudiante(nombre, apellido, curso) {
-    const nuevo = { nombre, apellido, curso };
-    this.estudiantes.push(nuevo);
-    this.guardarEstudiantes();
-    return nuevo;
+    const existe = this.estudiantes.some(
+      e =>
+        e.nombre.toLowerCase() === nombre.toLowerCase() &&
+        e.apellido.toLowerCase() === apellido.toLowerCase() &&
+        e.curso.toLowerCase() === curso.toLowerCase()
+    );
+
+    if (!existe) {
+      const nuevo = { nombre, apellido, curso };
+      this.estudiantes.push(nuevo);
+      this.guardarEstudiantes();
+      return nuevo;
+    }
+
+    return null;
   }
 
   buscarEstudiantePorNombre(nombre) {

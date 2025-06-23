@@ -20,6 +20,10 @@ app.post('/api/chat', async (req, res) => {
   if (!prompt) {
     return res.status(400).json({ error: 'Prompt requerido' });
   }
+  if (process.env.NODE_ENV === 'test') {
+    return res.json({ result: `Echo: ${prompt}` });
+  }
+
   const agente = createAgent({ model, temperature });
   try {
     const respuesta = await agente.run(prompt);
